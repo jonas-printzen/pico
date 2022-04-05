@@ -1,3 +1,6 @@
 *.o
 *.elf
 *.uf2
+*.bin
+a.out
+bin/

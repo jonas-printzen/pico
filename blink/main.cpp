@@ -1,4 +1,4 @@
-/* 
+/*
  * You can skip stdint.h and see how GCC defines things by running
  * arm-none-eabi-gcc -dM -E - < /dev/null
  */
@@ -39,7 +39,7 @@ typedef __UINT32_TYPE__ uint32_t;
 
 #define LED 25
 
-void delay(int n) // no particular timing
+inline void delay(int n) // no particular timing
 {
 	for(int i =0 ; i< n; i++) {
 		for(int j = 0; j< 1000; j++) {
@@ -65,17 +65,17 @@ int main()
 	RESETS_RESET &= ~reset_mask; // deassert the peripherals we want to use
 	while((RESETS_RESET_DONE & reset_mask) != reset_mask); // wait until they are up again
 
-	//PADS_BANK0_GPIO25 &= ~(1<<7); // clear output disable 
+	//PADS_BANK0_GPIO25 &= ~(1<<7); // clear output disable
 	//PADS_BANK0_GPIO25 &= ~(1<<6); // clear input enable
 
 	IO_BANK0_GPIO25_CTRL = GPIO_FUNC_SIO; // init pin - select function SIO
 	SIO_GPIO_OE_SET = 1ul << LED; // allow setting of output
 
-	while(1) {
-		SIO_GPIO_OUT_SET = 1ul << LED; 
+	while(true) {
+		SIO_GPIO_OUT_SET = 1ul << LED;
 		delay(100);
 		SIO_GPIO_OUT_CLR = 1ul << LED; // turn off the LED
-		delay(100);
+		delay(50);
 	}
 
 	return 0;

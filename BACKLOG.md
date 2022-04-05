@@ -1,4 +1,4 @@
-# PICO bare-bode
+# PICO bare-bone
 
 ## IN PROGRESS
 
